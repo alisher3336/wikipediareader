@@ -1,15 +1,15 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import '../../../data/models/article_model.dart';
+import 'package:wikipedia_reader/data/repository/RandomArticleRepository.dart';
 import '../../../summary.dart';
 
 class ArticleViewModel extends ChangeNotifier {
-  final ArticleModel model;
+  final RandomArticleRepository repo;
   Summary? summary;
   Exception? error;
   bool isLoading = false;
 
-  ArticleViewModel(this.model) {
+  ArticleViewModel(this.repo) {
     fetchArticle();
   }
   
@@ -17,7 +17,7 @@ class ArticleViewModel extends ChangeNotifier {
     isLoading = true;
     notifyListeners();
     try {
-      summary = await model.getRandomArticleSummary();
+      summary = await repo.getRandomArticle();
       error = null;
     } on HttpException catch (e) {
       error = e;
