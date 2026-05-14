@@ -5,8 +5,9 @@ import '../widgets/article_page.dart';
 import '../../../summary.dart';
 
 class ArticleView extends StatefulWidget {
-  ArticleView({super.key});
+  const ArticleView({super.key});
 
+  @override
   State<ArticleView> createState() => _ArticleViewState();
 }
 
